@@ -9,7 +9,7 @@
 <body>
     <form action="{{ route('search') }}" method="post">
         @csrf
-        <input type="text" name="name" placeholder="Type something to search">
+        <input type="text" name="name" placeholder="Type something to search" value="{{ old('name')}}">
         <input type="submit">
     </form>
 </body>

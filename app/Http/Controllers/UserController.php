@@ -27,7 +27,7 @@ class UserController extends Controller
     public function searchPost(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:3|max:255'
+            'name' => 'required|min:4|max:255'
         ]);
 
         $users = User::where('name','LIKE',"%" . $request->name . "%")->get();
