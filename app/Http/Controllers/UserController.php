@@ -19,4 +19,20 @@ class UserController extends Controller
         return User::paginate(15);
     }
 
+    public function search()
+    {
+        return view('search');
+    }
+
+    public function searchPost(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|min:3|max:255'
+        ]);
+
+        $users = User::where('name','LIKE',"%" . $request->name . "%")->get();
+        return view('search-results', compact('users'));
+
+    }
+
 }
