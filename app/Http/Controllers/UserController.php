@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Rules\Uppercase;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -27,7 +28,7 @@ class UserController extends Controller
     public function searchPost(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:4|max:255'
+            'name' => ['required|min:4|max:255', new Uppercase] //regla personalizada
         ]);
 
         $users = User::where('name','LIKE',"%" . $request->name . "%")->get();
